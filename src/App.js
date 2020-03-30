@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import UserInput from './components/UserInput/UserInput';
+import UserOutput from './components/UserOutput/UserOutput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state={
+    userName: ['Priya','Ajay']
+  }
+  nameChangeHandler = (event) =>{
+    const updatedUsername = this.state.userName;
+    updatedUsername[0] = event.target.value
+    this.setState({
+      userName: updatedUsername
+    })
+  }
+  render() {
+    return (
+      <div>
+        <UserInput change={this.nameChangeHandler} value={this.state.userName[0]}/>
+        <UserOutput userName={this.state.userName[0]} />
+        <UserOutput userName={this.state.userName[1]} />
+      </div>
+    );
+  }
 }
 
 export default App;
